@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+}
+
+.carousel-controls {
+    z-index: 1; /* Ensure controls are above other content */
+}
+
+.carousel-button {
+    pointer-events: auto; /* Allow buttons to be clickable */
+}
+
+.carousel-card {
+    pointer-events: auto; /* Allow cards to be clickable */
+}
+
+#carousel-content {
+    display: flex;
+    transition: opacity 1s ease-in-out;
+}
+
+#carousel-content > .card {
+    flex-shrink: 0;
+    width: 25%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    margin-right: 1rem; /* Adjust spacing as needed */
+}
+
+#carousel-content > .card.active {
+    opacity: 1;
+}
+
+.card:hover {
+    background-color: #1a1a1a; /* Slightly lighter background on hover */
+}
+

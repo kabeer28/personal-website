@@ -16,53 +16,81 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="font-sans antialiased bg-gray-100">
+<body class="font-sans antialiased bg-black text-white">
 
-    <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
+<header class="bg-black text-white p-4 flex justify-between items-center">
+    <div class="flex items-center">
+        <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
+    </div>
+    <nav>
+        <ul class="flex space-x-4">
+            <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+            <li><a href="https://github.com/kabeer28" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+            <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="ml-16 p-6"> <!-- margin-left for space from the top bar -->
+    <section id="home" class="mb-12">
+        <h2 class="text-4xl font-bold">Home</h2>
+        <p>I'm an innovator, developer, and Computer Engineering student at <a href="https://smithengineering.queensu.ca/ece/index.html" class="text-blue-500">Queen's University</a>.</p>
+    </section>
+
+    <section class="ml-16 p-6">
+        <div class="carousel-container relative overflow-hidden w-full bg-black">
+            <div class="carousel-track flex transition-transform duration-500">
+                <!-- Add your project cards here -->
+                <a href="path-to-project-1.html" class="carousel-card flex-shrink-0 w-1/3 p-2">
+                    <img src="path-to-your-image1.jpg" alt="Project 1" class="w-full h-auto">
+                    <p class="mt-2 text-center">Project 1 Description</p>
+                </a>
+                <a href="path-to-project-2.html" class="carousel-card flex-shrink-0 w-1/3 p-2">
+                    <img src="path-to-your-image2.jpg" alt="Project 2" class="w-full h-auto">
+                    <p class="mt-2 text-center">Project 2 Description</p>
+                </a>
+                <a href="path-to-project-3.html" class="carousel-card flex-shrink-0 w-1/3 p-2">
+                    <img src="path-to-your-image3.jpg" alt="Project 3" class="w-full h-auto">
+                    <p class="mt-2 text-center">Project 3 Description</p>
+                </a>
+                <!-- Add more project cards as needed -->
+            </div>
+            <div class="carousel-controls absolute inset-0 flex justify-between items-center pointer-events-none">
+                <button id="prev" class="carousel-button bg-black text-white p-2 pointer-events-auto z-10">
+                    &lt;
+                </button>
+                <button id="next" class="carousel-button bg-black text-white p-2 pointer-events-auto z-10">
+                    &gt;
+                </button>
+            </div>
         </div>
-        <nav>
-            <ul class="flex space-x-6">
-                <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="hover:text-blue-400">LinkedIn</a></li>
-                <li><a href="https://github.com/kabeer28" target="_blank" class="hover:text-gray-400">GitHub</a></li>
-                <li><a href="https://x.com/makkarkabeer" target="_blank" class="hover:text-blue-500">X</a></li>
-            </ul>
-        </nav>
-    </header>
+    </section>
 
-    <div class="ml-16 p-6"> <!-- margin-left for space from the top bar -->
-        <section id="home" class="mb-12">
-            <h2 class="text-4xl font-bold">Home</h2>
-            <p>I'm an innovator, developer, and Computer Engineering student at <a href="https://smithengineering.queensu.ca/ece/index.html" class="text-blue-500">Queen's University</a>.</p>
-        </section>
+    <section id="contact" class="mb-12">
+        <h2 class="text-3xl font-bold">Contact Me!</h2>
+        <p>Provide your contact information here.</p>
+    </section>
 
-        <section id="portfolio" class="mb-12">
-            <h2 class="text-3xl font-bold">My Portfolio</h2>
-            <p>Showcase your work here.</p>
-        </section>
-
-        <section id="contact" class="mb-12">
-            <h2 class="text-3xl font-bold">Contact Me!</h2>
-            <p>Provide your contact information here.</p>
-        </section>
-
+    <div id="donut-container" class="min-h-screen grid place-content-center">
         <pre id="donut"></pre>
     </div>
+</div>
 
-    <footer class="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
-        </div>
-        <nav>
-            <ul class="flex space-x-6">
-                <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="hover:text-blue-400">LinkedIn</a></li>
-                <li><a href="https://github.com/kabeer28" target="_blank" class="hover:text-gray-400">GitHub</a></li>
-                <li><a href="https://x.com/makkarkabeer" target="_blank" class="hover:text-blue-500">X</a></li>
-            </ul>
-        </nav>
-    </footer>
+<footer class="bg-black text-white p-4 flex justify-between items-center">
+    <div class="flex items-center">
+        <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
+    </div>
+    <nav>
+        <ul class="flex space-x-4">
+            <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+            <li><a href="https://github.com/kabeer28" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+            <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
+        </ul>
+    </nav>
+</footer>
 
-    <script src="donut.js"></script> <!-- Correct path to donut.js -->
+<script src="donut.js"></script>
+<script src="carousel.js"></script>
+
 </body>
 </html>
