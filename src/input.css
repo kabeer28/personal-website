@@ -40,3 +40,51 @@ body {
     background-color: #1a1a1a; /* Slightly lighter background on hover */
 }
 
+/* New Background Styles */
+.background-effect {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #191b1f;
+}
+
+.background-effect::after,
+.background-effect::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    background: hsl(199, 56%, 18%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(70px);
+    mix-blend-mode: lighten;
+}
+
+.background-effect::before {
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+.background-effect::after {
+    top: 50%;
+    left: 0px;
+    transform: translateX(-50%);
+}
+
+/* gradient background */
+.background-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(
+        circle closest-corner at center 125px,
+        hsl(199, 56%, 18%),
+        #191b1f 70%
+    ) no-repeat;
+}
