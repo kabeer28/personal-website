@@ -3,20 +3,16 @@
 @tailwind utilities;
 
 body {
-    background-color: #000; /* Black background */
-    color: #fff; /* White text */
+    background-color: #000;
+    color: #fff;
 }
 
 .carousel-controls {
-    z-index: 1; /* Ensure controls are above other content */
+    z-index: 1;
 }
 
-.carousel-button {
-    pointer-events: auto; /* Allow buttons to be clickable */
-}
-
-.carousel-card {
-    pointer-events: auto; /* Allow cards to be clickable */
+.carousel-button, .carousel-card {
+    pointer-events: auto;
 }
 
 #carousel-content {
@@ -29,7 +25,7 @@ body {
     width: 25%;
     opacity: 0;
     transition: opacity 1s ease-in-out;
-    margin-right: 1rem; /* Adjust spacing as needed */
+    margin-right: 1rem;
 }
 
 #carousel-content > .card.active {
@@ -37,54 +33,29 @@ body {
 }
 
 .card:hover {
-    background-color: #1a1a1a; /* Slightly lighter background on hover */
+    background-color: #1a1a1a;
 }
 
-/* New Background Styles */
-.background-effect {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color: #191b1f;
-}
+*******
 
-.background-effect::after,
-.background-effect::before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    background: hsl(199, 56%, 18%);
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    filter: blur(70px);
-    mix-blend-mode: lighten;
-}
+::-webkit-scrollbar {
+    width: 8px; 
+  }
 
-.background-effect::before {
-    top: 0;
-    right: 0;
-    transform: translate(50%, -50%);
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+  }
 
-.background-effect::after {
-    top: 50%;
-    left: 0px;
-    transform: translateX(-50%);
-}
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background-color: black;
+  }
 
-/* gradient background */
-.background-effect {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(
-        circle closest-corner at center 125px,
-        hsl(199, 56%, 18%),
-        #191b1f 70%
-    ) no-repeat;
-}
+  ::-webkit-scrollbar-track-piece {
+    background-color: auto;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  

@@ -59,41 +59,12 @@
                 #191b1f 70%
             ) no-repeat;
         }
-        
-        .scrollable-custom {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .scrollable:hover {
-            overflow: auto; /* Show scrollbar on hover */
-        }
-        
-        .scrollbar-custom::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .scrollbar-custom::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 4px;
-        }
-
-        .scrollbar-custom::-webkit-scrollbar-track {
-            background-color: #191b1f;
-        }
-
-        .scrollable {
-            height: 200px;
-            overflow: auto;
-            background: #333;
-            color: #fff;
-        }
     </style>
 </head>
-    
+
 <main id="swup" class="transition-fade">
-<body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
-    <div class="background-effect scrollbar-custom">
+<body class="font-sans antialiased bg-transparent text-white">
+    <div class="background-effect">
         <header class="bg-transparent text-white p-4 flex justify-between items-center relative z-10">
             <div class="flex items-center">
                 <img src="path-to-your-logo.png" alt="signature" class="h-20 mr-4">
@@ -143,14 +114,12 @@
                 </div>
             </section>
 
-            <section id="contact" class="mb-12">
+            <section id="contact" class="min-h-screen">
                 <h2 class="text-3xl font-bold">Contact Me!</h2>
                 <p>contact info maybe? or could be another section tbh.</p>
             </section>
 
-            <div id="donut-container" class="min-h-screen grid place-content-center">
-                <pre id="donut"></pre>
-            </div>
+        
         </div>
 
         <footer class="bg-transparent text-white p-4 flex justify-between items-center">
@@ -167,8 +136,6 @@
         </footer>
     </div>
 
-    <script src="donut.js"></script>
-    <script src="carousel.js"></script>
 </body>
 </main>
 </html>
