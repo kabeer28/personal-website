@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VWC8GQWV5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8VWC8GQWV5');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabeer Makkar</title>
@@ -8,76 +17,150 @@
     
     <!-- TailwindCSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://unpkg.com/swup@4"></script>
+    <script src="https://unpkg.com/@swup/fragment-plugin@1"></script>
+    <script defer src="/src/script.js"></script>
     
     <style>
-        body {
-            background-color: #191b1f;
-            color: white;
-        }
+        /* gradient background */
         .background-effect {
-            min-height: 100vh;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #191b1f;
+        }
+
+        .background-effect::after,
+        .background-effect::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            background: hsl(199, 56%, 18%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(70px);
+            mix-blend-mode: lighten;
+        }
+
+        .background-effect::before {
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+
+        .background-effect::after {
+            top: 50%;
+            left: 0px;
+            transform: translateX(-50%);
+        }
+
+        .background-effect {
             background: radial-gradient(
                 circle closest-corner at center 125px,
                 hsl(199, 56%, 18%),
                 #191b1f 70%
             ) no-repeat;
         }
+        
+        .scrollable-custom {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrollable:hover {
+            overflow: auto; /* Show scrollbar on hover */
+        }
+        
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 4px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background-color: #191b1f;
+        }
+
+        .scrollable {
+            height: 200px;
+            overflow: auto;
+            background: #333;
+            color: #fff;
+        }
+
+        body {
+            background-color: #191b1f;
+            color: white;
+        }
     </style>
 </head>
-<body class="font-sans antialiased">
-    <div class="background-effect">
-        <header class="bg-transparent text-white p-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/src/assets/logo.png" alt="signature" class="h-20 mr-4">
-            </div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
-                    <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
-                    <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        <main class="flex-grow relative z-10">
-            <div class="ml-16 p-6">
-                <h1 class="text-4xl font-bold mb-8">Projects</h1>
-                <nav class="mb-8">
-                    <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2023">2023</button>
-                    <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2022">2022</button>
-                    <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2021">2021</button>
-                    <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800" data-year="all">All</button>
-                </nav>
-                <div id="projects-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2023">
-                        <img src="/src/assets/image1.jpg" alt="Project 1" class="w-full h-auto rounded-md mb-2">
-                        <p>Project 1 Description</p>
-                    </div>
-                    <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2022">
-                        <img src="/src/assets/image2.jpg" alt="Project 2" class="w-full h-auto rounded-md mb-2">
-                        <p>Project 2 Description</p>
-                    </div>
-                    <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2021">
-                        <img src="/src/assets/image3.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
-                        <p>Project 3 Description</p>
-                    </div>
+<body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
+    <main id="swup" class="transition-fade">
+        <div class="background-effect scrollbar-custom">
+            <header class="bg-transparent text-white p-4 flex justify-between items-center relative z-10">
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="path-to-your-logo.png" alt="signature" class="h-20 mr-4">
+                    </a>
                 </div>
-            </div>
-        </main>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+                        <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+                        <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
+                    </ul>
+                </nav>
+            </header>
 
-        <footer class="bg-transparent text-white p-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/src/assets/logo.png" alt="signature" class="h-10 mr-4">
+            <div class="min-h-screen ml-16 p-6">
+                <section class="mb-20">
+                    <h1 class="text-4xl font-bold mb-8">Projects</h1>
+                    <nav class="mb-8">
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800" data-year="all">All</button>
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2023">2023</button>
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2022">2022</button>
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2021">2021</button>
+                    </nav>
+                    <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2023">
+                            <img src="/src/assets/image1.jpg" alt="Project 1" class="w-full h-auto rounded-md mb-2">
+                            <p>Project 1 Description</p>
+                        </div>
+                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2022">
+                            <img src="/src/assets/image2.jpg" alt="Project 2" class="w-full h-auto rounded-md mb-2">
+                            <p>Project 2 Description</p>
+                        </div>
+                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2021">
+                            <img src="/src/assets/image3.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
+                            <p>Project 3 Description</p>
+                        </div>
+                    </div>
+                    
+                </section>
             </div>
-            <nav>
-                <ul class="flex space-x-4">
-                    <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
-                    <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
-                    <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
-                </ul>
-            </nav>
-        </footer>
-    </div>
+
+            <footer class="bg-transparent text-white p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
+                </div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+                        <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+                        <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">X</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
+    </main>
+    <script src="carousel.js"></script>
 
     <script>
         // Simple filter functionality

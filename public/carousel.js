@@ -1,35 +1,68 @@
-const track = document.querySelector('.carousel-track');
-const cards = Array.from(track.children);
-const nextButton = document.querySelector('#next');
-const prevButton = document.querySelector('#prev');
-const cardWidth = cards[0].getBoundingClientRect().width;
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return; // If carousel-track doesn't exist, exit
 
-cards.forEach((card, index) => {
-    card.style.left = cardWidth * index + 'px';
-});
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    const cards = Array.from(track.children);
+    if (cards.length === 0) return; // Exit if no cards are present
 
-const moveToCard = (track, currentCard, targetCard) => {
-    track.style.transform = 'translateX(-' + targetCard.style.left + ')';
-    currentCard.classList.remove('current-card');
-    targetCard.classList.add('current-card');
-}
+    const cardWidth = cards[0].offsetWidth;
+    let index = 0;
+    let autoplayInterval;
 
-prevButton.addEventListener('click', e => {
-    const currentCard = track.querySelector('.current-card');
-    const prevCard = currentCard.previousElementSibling;
+    // Initialize card positions
+    cards.forEach((card, i) => {
+        card.style.left = cardWidth * i + 'px';
+    });
 
-    if (prevCard) {
-        moveToCard(track, currentCard, prevCard);
+    function updateCarousel() {
+        track.style.transform = `translateX(${-index * cardWidth}px)`;
+        // Update the current card class
+        cards.forEach((card, i) => {
+            card.classList.toggle('current-card', i === index);
+        });
     }
-});
 
-nextButton.addEventListener('click', e => {
-    const currentCard = track.querySelector('.current-card');
-    const nextCard = currentCard.nextElementSibling;
-
-    if (nextCard) {
-        moveToCard(track, currentCard, nextCard);
+    function goToNextCard() {
+        index = (index + 1) % cards.length; // Move to next card, loop back to first
+        updateCarousel();
     }
-});
 
-document.querySelector('.carousel-card').classList.add('current-card');
+    function goToPrevCard() {
+        index = (index - 1 + cards.length) % cards.length; // Move to previous card, loop back to last
+        updateCarousel();
+    }
+
+    prevButton.addEventListener('click', () => {
+        goToPrevCard();
+        resetAutoplay();
+    });
+
+    nextButton.addEventListener('click', () => {
+        goToNextCard();
+        resetAutoplay();
+    });
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(goToNextCard, 5000); // change slide every 5 seconds
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    function resetAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
+    track.addEventListener('mouseenter', stopAutoplay);
+    track.addEventListener('mouseleave', startAutoplay);
+
+    // Initialize autoplay
+    startAutoplay();
+
+    // Set initial position
+    updateCarousel();
+});

@@ -10,6 +10,7 @@ body {
 
 .carousel-controls {
     z-index: 1;
+    pointer-events: none;
 }
 
 .carousel-button, .carousel-card {
@@ -60,7 +61,7 @@ body {
 
 .transition-fade {
     opacity: 0;
-    transition: opacity 500ms;
+    transition: opacity 0.5s;
 }
 
 html.is-animating .transition-fade {
@@ -70,3 +71,38 @@ html.is-animating .transition-fade {
 html.is-leaving .transition-fade {
     opacity: 0;
 }
+
+/* defining the fade-in animation */
+.fade-in {
+    animation: fadeIn 600ms ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  /* default transition for swup */
+  html.is-changing .transition-main {
+    transition: opacity 600ms ease-in-out;
+    opacity: 1;
+  }
+  
+  html.is-animating .transition-main {
+    opacity: 0;
+  }
+  
+  /* fade-in effect for the projects container */
+  #projects-container.is-changing {
+    transition: opacity 600ms ease-in-out;
+  }
+  
+  #projects-container.is-animating {
+    opacity: 0;
+  }
+  
+
