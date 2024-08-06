@@ -1,86 +1,113 @@
 document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
-    if (!track) return; // if carousel-track doesn't exist, exit
+    if (!track) return;
 
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-    const cards = Array.from(track.children);
-    if (cards.length === 0) return; // exit if no cards are present
+    const slides = Array.from(track.children);
+    if (slides.length === 0) return;
 
-    const cardWidth = cards[0].offsetWidth;
-    let index = 0;
-    let autoplayInterval;
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    let currentIndex = slides.length;
+    let autoSlideInterval;
 
-    // initialize card positions
-    cards.forEach((card, i) => {
-        card.style.left = cardWidth * i + 'px';
-    });
-
-    function updateCarousel() {
-        track.style.transform = `translateX(${-index * cardWidth}px)`;
-        // update the current card class
-        cards.forEach((card, i) => {
-            card.classList.toggle('current-card', i === index);
+    // Clone slides for seamless looping
+    const cloneSlides = () => {
+        slides.forEach(slide => {
+            track.appendChild(slide.cloneNode(true));
+            track.prepend(slide.cloneNode(true));
         });
-    }
+    };
 
-    function goToNextCard() {
-        index = (index + 1) % cards.length; // move to next card, loop back to first
-        updateCarousel();
-    }
+    cloneSlides();
 
-    function goToPrevCard() {
-        index = (index - 1 + cards.length) % cards.length; // move to previous card, loop back to last
-        updateCarousel();
-    }
+    const totalSlides = track.children.length;
 
-    prevButton.addEventListener('click', () => {
-        goToPrevCard();
-        resetAutoplay();
-    });
+    const setPosition = (index) => {
+        gsap.set(track, { x: -index * slideWidth });
+    };
 
-    nextButton.addEventListener('click', () => {
-        goToNextCard();
-        resetAutoplay();
-    });
+    // Set initial position
+    setPosition(currentIndex);
 
-    function startAutoplay() {
-        autoplayInterval = setInterval(goToNextCard, 5000); // change slide every 5 seconds
-    }
+    const moveToSlide = (newIndex, animate = true) => {
+        let targetIndex = newIndex;
 
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-    }
+        if (targetIndex < 0) {
+            targetIndex = totalSlides - 1;
+        } else if (targetIndex >= totalSlides) {
+            targetIndex = 0;
+        }
 
-    function resetAutoplay() {
-        stopAutoplay();
-        startAutoplay();
-    }
+        if (animate) {
+            gsap.to(track, {
+                duration: 0.5,
+                x: -targetIndex * slideWidth,
+                ease: "power2.out",
+                onComplete: () => {
+                    // Adjust position if needed
+                    if (targetIndex >= 2 * slides.length) {
+                        targetIndex = targetIndex - slides.length;
+                        setPosition(targetIndex);
+                    } else if (targetIndex < slides.length) {
+                        targetIndex = targetIndex + slides.length;
+                        setPosition(targetIndex);
+                    }
+                }
+            });
+        } else {
+            setPosition(targetIndex);
+        }
 
-    track.addEventListener('mouseenter', stopAutoplay);
-    track.addEventListener('mouseleave', startAutoplay);
+        currentIndex = targetIndex;
+    };
 
-    startAutoplay();
+    const startAutoSlide = () => {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => {
+            moveToSlide(currentIndex + 1);
+        }, 3000);
+    };
 
-    updateCarousel();
-
-    // GSAP draggable integration
-    Draggable.create(track, {
-        type: 'x',
-        edgeResistance: 0.9,
+    // GSAP draggable setup
+    const dragInstance = Draggable.create(track, {
+        type: "x",
         inertia: true,
-        throwProps: true,
-        lockAxis: true,
-        snap: {
-            x: function(endValue) {
-                return Math.round(endValue / cardWidth) * cardWidth;
+        edgeResistance: 0.85,
+        bounds: { minX: -slideWidth * (totalSlides - 1), maxX: 0 },
+        onDrag: function() {
+            // Ensure continuous scrolling
+            const currentX = this.x;
+            const totalWidth = slideWidth * slides.length;
+
+            if (currentX > 0) {
+                this.x = currentX - totalWidth;
+            } else if (currentX < -totalWidth) {
+                this.x = currentX + totalWidth;
             }
         },
         onDragEnd: function() {
-            index = Math.round(this.x / -cardWidth);
-            updateCarousel();
+            const draggedIndex = Math.round(Math.abs(this.endX) / slideWidth);
+            moveToSlide(draggedIndex, true);
+            startAutoSlide();
         }
+    })[0];
+
+    prevButton.addEventListener('click', () => {
+        clearInterval(autoSlideInterval);
+        moveToSlide(currentIndex - 1);
+        startAutoSlide();
     });
 
-    updateCarousel();
+    nextButton.addEventListener('click', () => {
+        clearInterval(autoSlideInterval);
+        moveToSlide(currentIndex + 1);
+        startAutoSlide();
+    });
+
+    track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+    track.addEventListener('mouseleave', startAutoSlide);
+
+    startAutoSlide();
 });
+
