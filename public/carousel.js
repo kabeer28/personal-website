@@ -1,113 +1,151 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const track = document.querySelector('.carousel-track');
-    if (!track) return;
+const carouselTrack = document.querySelector('.carousel-track');
+const carouselCards = document.querySelectorAll('.carousel-card');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
 
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-    const slides = Array.from(track.children);
-    if (slides.length === 0) return;
+let cardWidth = carouselCards[0].offsetWidth;
+let totalCards = carouselCards.length;
+let currentIndex = 0;
+let isTransitioning = false;
+let isDragging = false;
+let startPos = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let animationID = 0;
 
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    let currentIndex = slides.length;
-    let autoSlideInterval;
-
-    // Clone slides for seamless looping
-    const cloneSlides = () => {
-        slides.forEach(slide => {
-            track.appendChild(slide.cloneNode(true));
-            track.prepend(slide.cloneNode(true));
-        });
-    };
-
-    cloneSlides();
-
-    const totalSlides = track.children.length;
-
-    const setPosition = (index) => {
-        gsap.set(track, { x: -index * slideWidth });
-    };
-
-    // Set initial position
-    setPosition(currentIndex);
-
-    const moveToSlide = (newIndex, animate = true) => {
-        let targetIndex = newIndex;
-
-        if (targetIndex < 0) {
-            targetIndex = totalSlides - 1;
-        } else if (targetIndex >= totalSlides) {
-            targetIndex = 0;
-        }
-
-        if (animate) {
-            gsap.to(track, {
-                duration: 0.5,
-                x: -targetIndex * slideWidth,
-                ease: "power2.out",
-                onComplete: () => {
-                    // Adjust position if needed
-                    if (targetIndex >= 2 * slides.length) {
-                        targetIndex = targetIndex - slides.length;
-                        setPosition(targetIndex);
-                    } else if (targetIndex < slides.length) {
-                        targetIndex = targetIndex + slides.length;
-                        setPosition(targetIndex);
-                    }
-                }
-            });
-        } else {
-            setPosition(targetIndex);
-        }
-
-        currentIndex = targetIndex;
-    };
-
-    const startAutoSlide = () => {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = setInterval(() => {
-            moveToSlide(currentIndex + 1);
-        }, 3000);
-    };
-
-    // GSAP draggable setup
-    const dragInstance = Draggable.create(track, {
-        type: "x",
-        inertia: true,
-        edgeResistance: 0.85,
-        bounds: { minX: -slideWidth * (totalSlides - 1), maxX: 0 },
-        onDrag: function() {
-            // Ensure continuous scrolling
-            const currentX = this.x;
-            const totalWidth = slideWidth * slides.length;
-
-            if (currentX > 0) {
-                this.x = currentX - totalWidth;
-            } else if (currentX < -totalWidth) {
-                this.x = currentX + totalWidth;
-            }
-        },
-        onDragEnd: function() {
-            const draggedIndex = Math.round(Math.abs(this.endX) / slideWidth);
-            moveToSlide(draggedIndex, true);
-            startAutoSlide();
-        }
-    })[0];
-
-    prevButton.addEventListener('click', () => {
-        clearInterval(autoSlideInterval);
-        moveToSlide(currentIndex - 1);
-        startAutoSlide();
-    });
-
-    nextButton.addEventListener('click', () => {
-        clearInterval(autoSlideInterval);
-        moveToSlide(currentIndex + 1);
-        startAutoSlide();
-    });
-
-    track.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-    track.addEventListener('mouseleave', startAutoSlide);
-
-    startAutoSlide();
+// clone cards for infinite scroll
+carouselCards.forEach((card) => {
+  const clone = card.cloneNode(true);
+  carouselTrack.appendChild(clone);
 });
 
+// update card width on resize
+window.addEventListener('resize', () => {
+  cardWidth = carouselCards[0].offsetWidth;
+  goToCard(currentIndex, false);
+});
+
+// scroll to a specific card
+function goToCard(index, animate = true) {
+  if (isTransitioning) return;
+  isTransitioning = true;
+  currentIndex = index;
+
+  if (animate) {
+    carouselTrack.style.transition = 'transform 0.5s ease';
+  } else {
+    carouselTrack.style.transition = 'none';
+  }
+
+  carouselTrack.style.transform = `translateX(${-index * cardWidth}px)`;
+
+  if (index >= totalCards) {
+    setTimeout(() => {
+      carouselTrack.style.transition = 'none';
+      currentIndex = 0;
+      carouselTrack.style.transform = `translateX(0)`;
+    }, 500);
+  } else if (index < 0) {
+    setTimeout(() => {
+      carouselTrack.style.transition = 'none';
+      currentIndex = totalCards - 1;
+      carouselTrack.style.transform = `translateX(${-(totalCards - 1) * cardWidth}px)`;
+    }, 500);
+  }
+
+  setTimeout(() => {
+    isTransitioning = false;
+  }, 500);
+}
+
+// next button click
+nextButton.addEventListener('click', () => {
+  goToCard(currentIndex + 1);
+});
+
+// previous button click
+prevButton.addEventListener('click', () => {
+  goToCard(currentIndex - 1);
+});
+
+// drag to scroll functionality
+function dragStart(e) {
+  if (e.type === 'touchstart') {
+    startPos = e.touches[0].clientX;
+  } else {
+    startPos = e.clientX;
+    e.preventDefault(); // prevent text selection
+    carouselTrack.style.cursor = 'grabbing';
+  }
+  
+  isDragging = true;
+  animationID = requestAnimationFrame(animation);
+}
+
+function dragMove(e) {
+  if (!isDragging) return;
+  
+  let currentPosition;
+  if (e.type === 'touchmove') {
+    currentPosition = e.touches[0].clientX;
+  } else {
+    currentPosition = e.clientX;
+  }
+
+  currentTranslate = prevTranslate + currentPosition - startPos;
+}
+
+function dragEnd() {
+  isDragging = false;
+  cancelAnimationFrame(animationID);
+  carouselTrack.style.cursor = 'grab';
+
+  const movedBy = currentTranslate - prevTranslate;
+
+  if (movedBy < -cardWidth / 4 && currentIndex < totalCards - 1) {
+    currentIndex += 1;
+  } else if (movedBy > cardWidth / 4 && currentIndex > 0) {
+    currentIndex -= 1;
+  }
+
+  goToCard(currentIndex);
+}
+
+function animation() {
+  setSliderPosition();
+  if (isDragging) requestAnimationFrame(animation);
+}
+
+function setSliderPosition() {
+  carouselTrack.style.transform = `translateX(${currentTranslate}px)`;
+}
+
+carouselTrack.addEventListener('touchstart', dragStart);
+carouselTrack.addEventListener('touchmove', dragMove);
+carouselTrack.addEventListener('touchend', dragEnd);
+carouselTrack.addEventListener('mousedown', dragStart);
+carouselTrack.addEventListener('mousemove', dragMove);
+carouselTrack.addEventListener('mouseup', dragEnd);
+carouselTrack.addEventListener('mouseleave', dragEnd);
+
+// prevent context menu on long press
+carouselTrack.addEventListener('contextmenu', (e) => e.preventDefault());
+
+// auto-scroll functionality
+let timeoutId;
+
+function startAutoScroll() {
+  stopAutoScroll();
+  timeoutId = setInterval(() => {
+    goToCard(currentIndex + 1);
+  }, 5000);
+}
+
+function stopAutoScroll() {
+  clearInterval(timeoutId);
+}
+
+carouselTrack.addEventListener('mouseenter', stopAutoScroll);
+carouselTrack.addEventListener('mouseleave', startAutoScroll);
+
+startAutoScroll();
