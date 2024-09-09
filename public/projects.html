@@ -99,6 +99,76 @@
             background-color: #191b1f;
             color: white;
         }
+
+        @keyframes subtle-glow {
+            0% {
+                box-shadow: 0 0 2px rgba(255, 255, 255, 0.3), 0 0 4px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 4px rgba(255, 255, 255, 0.5), 0 0 8px rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 2px rgba(255, 255, 255, 0.3), 0 0 4px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        #project-popup .popup-content {
+            transition: box-shadow 0.3s ease-in-out;
+            transform: none !important; /* Ensure no transform is applied */
+        }
+
+        #project-popup.highlight .popup-content {
+            animation: subtle-glow 2s ease-in-out infinite;
+        }
+
+        #project-popup.fade-out .popup-content {
+            animation: none;
+            box-shadow: none;
+            transition: box-shadow 1s ease-in-out;
+        }
+
+        /* Remove any transform from these classes if they exist */
+        .highlight, .fade-out {
+            transform: none !important;
+        }
+
+        body {
+            font-family: 'Switzer-Regular', sans-serif;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Boska-Medium', serif;
+            color: #f0f0f0;
+        }
+
+        .headline {
+            font-family: 'Boska-Medium', serif;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .body-text {
+            font-family: 'Switzer-Regular', sans-serif;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        em, i, .italic {
+            font-family: 'Boska-MediumItalic', serif;
+            font-style: italic;
+        }
+
+        .transition-fade {
+            transition: 0.4s;
+            opacity: 1;
+        }
+
+        html.is-animating .transition-fade {
+            opacity: 0;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
@@ -107,7 +177,7 @@
             <header class="bg-transparent text-white p-4 flex justify-between items-center relative z-10">
                 <div class="flex items-center">
                     <a href="index.html">
-                        <img src="path-to-your-logo.png" alt="signature" class="h-20 mr-4">
+                        <img src="namelogo.png" alt="signature" class="h-10 mr-4">
                     </a>
                 </div>
                 <nav>
@@ -124,31 +194,67 @@
                     <h1 class="text-4xl font-bold mb-8">Projects</h1>
                     <nav class="mb-8">
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800" data-year="all">All</button>
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2024">2024</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2023">2023</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2022">2022</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2021">2021</button>
                     </nav>
                     <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2023">
+                        <div id="project-1" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2024">
                             <img src="/src/assets/image1.jpg" alt="Project 1" class="w-full h-auto rounded-md mb-2">
-                            <p>Project 1 Description</p>
+                            <h3 class="font-semibold headline">Facebell</h3>
+                            <p class="text-sm text-gray-300 mb-2">The Innovative Facial Recognition Doorbell</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">React</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Node.js</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">MongoDB</span>
+                            </div>
                         </div>
-                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2022">
+                        <div id="project-2" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2023">
                             <img src="/src/assets/image2.jpg" alt="Project 2" class="w-full h-auto rounded-md mb-2">
-                            <p>Project 2 Description</p>
+                            <h3 class="font-semibold headline">Automated Fluid and Powder Dispenser</h3>
+                            <p class="text-sm text-gray-300 mb-2">Brief description of Project 2</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">HTML</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">CSS</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">JavaScript</span>
+                            </div>
                         </div>
-                        <div class="project-card bg-gray-800 p-4 rounded-lg shadow-md" data-year="2021">
+                        <div id="project-3" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2021">
                             <img src="/src/assets/image3.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
-                            <p>Project 3 Description</p>
+                            <h3 class="font-semibold headline">Project 3</h3>
+                            <p class="text-sm text-gray-300 mb-2">Brief description of Project 3</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">SOLIDWORKS</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Vue.js</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Firebase</span>
+                            </div>
                         </div>
                     </div>
                     
+                    <div id="project-popup" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden z-50">
+                        <div class="popup-content bg-gray-800 p-8 rounded-lg w-11/12 max-w-4xl max-h-[95vh] overflow-y-auto">
+                            <button id="close-popup" class="absolute top-4 right-4 text-white text-2xl">&times;</button>
+                            <h2 id="popup-title" class="text-2xl font-bold headline mb-2"></h2>
+                            <p id="popup-subtitle" class="text-gray-300 mb-4"></p>
+                            <div id="popup-tags" class="flex flex-wrap gap-2 mb-4"></div>
+                            <img id="popup-image" src="" alt="" class="w-full h-auto rounded-md mb-4">
+                            <p id="popup-description" class="text-gray-300 mb-4"></p>
+                            <div id="popup-tech-stack" class="mb-4">
+                                <h3 class="text-xl font-semibold mb-2">Tech Stack</h3>
+                                <ul class="list-disc list-inside"></ul>
+                            </div>
+                            <div id="popup-links" class="flex space-x-4">
+                                <!-- Links will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
 
             <footer class="bg-transparent text-white p-4 flex justify-between items-center">
                 <div class="flex items-center">
-                    <img src="path-to-your-logo.png" alt="signature" class="h-10 mr-4">
+                    <img src="namelogo.png" alt="signature" class="h-10 mr-4">
                 </div>
                 <nav>
                     <ul class="flex space-x-4">
@@ -161,6 +267,7 @@
         </div>
     </main>
     <script src="carousel.js"></script>
+    <script src="/src/project-highlight.js"></script>
 
     <script>
         // Simple filter functionality
@@ -176,6 +283,114 @@
                 });
             });
         });
+
+        // Project popup functionality
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectPopup = document.getElementById('project-popup');
+        const closePopup = document.getElementById('close-popup');
+        const popupTitle = document.getElementById('popup-title');
+        const popupSubtitle = document.getElementById('popup-subtitle');
+        const popupTags = document.getElementById('popup-tags');
+        const popupImage = document.getElementById('popup-image');
+        const popupDescription = document.getElementById('popup-description');
+        const popupTechStack = document.getElementById('popup-tech-stack').querySelector('ul');
+        const popupLinks = document.getElementById('popup-links');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('h3').textContent;
+                const subtitle = card.querySelector('p').textContent;
+                const tags = Array.from(card.querySelectorAll('.flex.flex-wrap.gap-2 span')).map(span => span.textContent);
+                const image = card.querySelector('img').src;
+                const description = "Detailed description of " + title + ". Add more information about the project here.";
+                const techStack = ['React', 'Node.js', 'MongoDB']; // Example tech stack
+                const links = [
+                    { text: 'GitHub', url: 'https://github.com/yourusername/project1' },
+                    { text: 'Live Demo', url: 'https://project1-demo.com' }
+                ];
+
+                popupTitle.textContent = title;
+                popupSubtitle.textContent = subtitle;
+                popupImage.src = image;
+                popupImage.alt = title;
+                popupDescription.textContent = description;
+
+                popupTags.innerHTML = '';
+                tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.textContent = tag;
+                    span.className = 'text-white text-xs px-2 py-1 rounded border border-white';
+                    popupTags.appendChild(span);
+                });
+
+                popupTechStack.innerHTML = '';
+                techStack.forEach(tech => {
+                    const li = document.createElement('li');
+                    li.textContent = tech;
+                    popupTechStack.appendChild(li);
+                });
+
+                popupLinks.innerHTML = '';
+                links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.textContent = link.text;
+                    a.className = 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600';
+                    a.target = '_blank';
+                    popupLinks.appendChild(a);
+                });
+
+                projectPopup.classList.remove('hidden');
+                setTimeout(() => {
+                    projectPopup.style.opacity = '1';
+                }, 10);
+            });
+        });
+
+        closePopup.addEventListener('click', () => {
+            projectPopup.classList.add('hidden');
+            projectPopup.classList.remove('highlight', 'fade-out');
+        });
+
+        projectPopup.addEventListener('click', (e) => {
+            if (e.target === projectPopup) {
+                projectPopup.classList.add('hidden');
+                projectPopup.classList.remove('highlight', 'fade-out');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectToOpen = urlParams.get('open');
+
+            if (projectToOpen) {
+                const projectElement = document.getElementById(projectToOpen);
+                if (projectElement) {
+                    // Trigger click event to open the popup
+                    projectElement.click();
+
+                    // Apply highlight effect to the popup
+                    setTimeout(() => {
+                        const popup = document.getElementById('project-popup');
+                        if (popup) {
+                            popup.classList.add('highlight');
+                            
+                            // Remove highlight after 5 seconds
+                            setTimeout(() => {
+                                popup.classList.add('fade-out');
+                                setTimeout(() => {
+                                    popup.classList.remove('highlight', 'fade-out');
+                                }, 1000); // 1 second for fade-out transition
+                            }, 5000); // 5 seconds of highlight
+                        }
+                    }, 100); // Short delay to ensure popup is open
+                }
+            }
+        });
+    </script>
+
+    <script>
+        const swup = new Swup();
     </script>
 </body>
 </html>
