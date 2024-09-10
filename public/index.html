@@ -267,6 +267,27 @@
         html.is-animating .transition-fade {
             opacity: 0;
         }
+
+        .donut-text {
+            font-size: 0.7rem;
+            line-height: 100%; /* this value is 0.1 more than font-size to make the donut centered */
+        }
+
+        #donut-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        #donut {
+            line-height: 110%;
+            margin: 0;
+            padding: 0;
+        }
     </style>
     <link rel="stylesheet" href="switzer.css">
     <link rel="stylesheet" href="boska.css">
@@ -344,9 +365,9 @@
                 <p class="body-text">You can reach me at my <a href="mailto:kabeermakkar28@gmail.com" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">email,</span></a> and check out my <a href="resume.com" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">resume</span></a> to find out more about me.</p>
             </section>
 
-            <div id="donut-container" class="min-h-screen grid place-content-center">
-                <pre id="donut"></pre>
-                <a href="https://www.a1k0n.net/2011/07/20/donut-math.html" target="_blank" class="text-xs text-gray-800 hover:text-gray-700 transition-colors duration-300 mt-2 text-center">learn more</a>
+            <div id="donut-container">
+                <pre id="donut" class="donut-text"></pre>
+                <a href="https://www.a1k0n.net/2011/07/20/donut-math.html" target="_blank" class="text-xs text-gray-800 hover:text-gray-700 transition-colors duration-300 mt-2">learn more</a>
             </div>
         </div>
 
