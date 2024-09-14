@@ -169,6 +169,38 @@
         html.is-animating .transition-fade {
             opacity: 0;
         }
+
+        #popup-description {
+            color: white;
+        }
+
+        .custom-button {
+            background-color: #37404e; /* dark gray */
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #4a5568; /* slightly lighter gray on hover */
+        }
+
+        .popup-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* yo kabz u can adjust this value to increase/decrease space between buttons */
+        }
+
+        .custom-button {
+            flex: 1 1 calc(25% - 10px); /* this makes each button take up 25% of the container width minus the gap */
+            min-width: 100px; /* ensures buttons don't get too small on narrow screens */
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
@@ -198,9 +230,14 @@
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2023">2023</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2022">2022</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2021">2021</button>
+                        <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2020">2020</button>
                     </nav>
                     <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div id="project-1" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2024">
+                        <div id="project-1" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2024" 
+                                data-demo-link="https://www.youtube.com/watch?v=demo1" 
+                                data-pitch-deck-link="https://drive.google.com/file/pitch1" 
+                                data-description="Winners out of the ECEi cohort for the 2023 APSC 103 Innovation Project Final Showcase">
                             <img src="/src/assets/image1.jpg" alt="Project 1" class="w-full h-auto rounded-md mb-2">
                             <h3 class="font-semibold headline">Facebell</h3>
                             <p class="text-sm text-gray-300 mb-2">The Innovative Facial Recognition Doorbell</p>
@@ -211,28 +248,131 @@
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">React</span>
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">Python</span>
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">ASP.NET</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Engineering Reports</span>
                             </div>
                         </div>
-                        <div id="project-2" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2023">
+                        <div id="project-2" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2023" 
+                                data-demo-link="https://www.youtube.com/watch?v=8ongIbo3HfI"
+                                data-description="Led a team through a 12-week project to design and build an automated fluid and powder dispenser. Applied skills in Arduino programming, electrical components, SOLIDWORKS for 3D modelling, soldering and precision cutting. Supported project manager and the team's practical work with detailed engineering reports for each project phase.
+                                <br></br>Utilized advanced programming techniques to ensure precise control over the Kool-Aid dispensing process, minimizing errors and increasing productivity.">
                             <img src="/src/assets/image2.jpg" alt="Project 2" class="w-full h-auto rounded-md mb-2">
                             <h3 class="font-semibold headline">Automated Fluid and Powder Dispenser</h3>
                             <p class="text-sm text-gray-300 mb-2">Brief description of Project 2</p>
                             <div class="flex flex-wrap gap-2">
-                                
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">SOLIDWORKS</span>
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">Arduino</span>
-                                <span class="text-white text-xs px-2 py-1 rounded border border-white">C</span>
-
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">C++</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Engineering Reports</span>
                             </div>
                         </div>
-                        <div id="project-3" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" data-year="2021">
-                            <img src="/src/assets/image3.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
-                            <h3 class="font-semibold headline">Project 3</h3>
+                        <div id="project-3" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2023" 
+                                data-demo-link="https://www.youtube.com/watch?v=demo2" 
+                                data-pitch-deck-link="https://drive.google.com/file/pitch2"
+                                data-description="Personal project focused on creating a solution to optimize the Indian blood supply chain at each stage, reduce errors, and potential wastage of blood, energy, and money; mentioned in the National Observer
+                                <br></br>Met with multiple Indian private institutions to discuss possible pilots, including Narayana Health, and E Rakt Kosh">
+                            <img src="/src/assets/image2.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">Circulate - Redesigning the Indian Blood Supply Chain</h3>
+                            <p class="text-sm text-gray-300 mb-2">Mitigating deaths in India due to the blood shortage by developing a load-balancing algorithm and transportation infrastructure through a crowdsourcing model</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Python</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Research</span>
+                            </div>
+                        </div>
+                        <div id="project-4" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2022" 
+                                data-demo-link="https://youtu.be/5S83bXDL384"
+                                data-other-link1="https://devpost.com/software/abel"
+                                data-other-link-text1="Devpost">
+                            <img src="/src/assets/image3.jpg" alt="Project 4" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">Abel</h3>
+                            <p class="text-sm text-gray-300 mb-2">Built a walking cane with ultrasonic sensors to assist visually impaired people at Hack The North 2022</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Arduino</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">C++</span>                            </div>
+                        </div>
+                        <div id="project-5" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2021" 
+                                data-other-link1="https://drive.google.com/file/d/16c-URsTuSJ30kmGJSoT6_jNYXh8HqlqX/view?usp=drivesdk"
+                                data-other-link-text1="Slide Deck"
+                                data-demo-link="https://www.loom.com/share/379a70d400ee4e43abb5da51e5104637"
+                                data-description="Our pitched project, Femé, enables more women and girls to access, create and influence technology in Morroco by increasing digital skills and access to digital devices and the Internet by 2026
+                                <br></br>Problem, Solution, Opportunity and Impact Appendices are located in the last slide of the slide deck.">
+                            <img src="/src/assets/image3.jpg" alt="Project 5" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">Shell: Tackling Methane Emissions by Decommissioning High-Risk Sources</h3>
                             <p class="text-sm text-gray-300 mb-2">Brief description of Project 3</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Research</span>
+                            </div>
+                        </div>
+                        <div id="project-6" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2021" 
+                                data-other-link1="https://drive.google.com/file/d/16ejqrDzSMvXzNlpDhreWbOFo8OdMzeB8/view?usp=drivesdk" 
+                                data-other-link-text1="Slide Deck"
+                                data-other-link2="https://kabeermakkar.notion.site/Fem-Caf-s-Morocco-dfecfe9b2a47408089237419d377a8a5"
+                                data-other-link-text2="Pilot Report"
+                                data-other-link3="https://www.figma.com/file/LNSyMMC1atnFxXewDMUPO9/Fem%C3%A9-UI?node-id=0%3A1"
+                                data-other-link-text3="UI/UX"
+                                data-description="A pitch project, Femé, enables more women and girls to access, create and influence technology in Morroco by increasing digital skills and access to digital devices and the Internet by 2026
+                                <br></br>Built a deck and UI proposing initiatives to empower women and girls in urban Morocco, focusing on enhancing their capabilities to thrive in their digital economy">
+                            <img src="/src/assets/image3.jpg" alt="Project 6" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">United Nations: Empowering Women through Digital Access</h3>
+                            <p class="text-sm text-gray-300 mb-2">Fostering digital inclusion by creating women-only internet cafes, enabling Moroccan women to thrive in tech.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Figma</span>
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Research</span>
+                            </div>
+                        </div>
+                        <div id="project-7" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer"
+                                data-year="2021" 
+                                data-other-link1="https://drive.google.com/file/d/1Zht7aR9TaCynurSIjjDtnTx2iGELlpEX/view?usp=drivesdk" 
+                                data-other-link-text1="Slide Deck"
+                                data-other-link2="https://thunder-diascia-ae7.notion.site/Financial-Report-cb01dc27c73f4bb7929680a24200c000"
+                                data-other-link-text2="Financial Analysis"
+                                data-other-link3="https://www.loom.com/share/af4606e9a2de487480da36d9dfbab1a9" 
+                                data-other-link-text3="UI Demo"
+                                data-description="Conducted a comprehensive analysis of the Instacart user experience, identifying key pain points and opportunities for enhancement. My recommendations focused on improving app navigation, search functionality, and the overall user interface to create a more seamless and intuitive shopping experience.<br></br> Additionally performed a financial analysis to assess the potential impact of these improvements on user/shopper retention and revenue growth.
+                                <br></br>Built and presented a recommendation deck to their executive team, placed top 10 out of 30 teams.">
+                            <img src="/src/assets/image3.jpg" alt="Project 7" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">Improving the Instacart User Experience</h3>
+                            <p class="text-sm text-gray-300 mb-2">Created solutions for improving the customer experience at Instacart.</p>
                             <div class="flex flex-wrap gap-2">
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">SOLIDWORKS</span>
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">Vue.js</span>
                                 <span class="text-white text-xs px-2 py-1 rounded border border-white">Firebase</span>
+                            </div>
+                        </div>
+                        <div id="project-8" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2021" 
+                                data-pitch-deck-link="https://drive.google.com/file/d/1eJWW__0v4sUMUAqcA9TQUVOq9e49N7T0/view?usp=drivesdk"
+                                data-onepager-link="https://drive.google.com/file/d/1xZ-nSa0Nwc1RCGxI13LQVtC0o4ZfIocF/view?usp=drivesdk" 
+                                data-other-link1="https://youtu.be/bGm_M9Ww_xQ" 
+                                data-other-link-text1="Video"
+                                data-other-link2="https://mikaelhaji.medium.com/pioneering-a-neuvae-forward-in-healthcare-3089c670c8f7" 
+                                data-other-link-text2="Article"
+                                data-description="Contributed directly to the research on creating a moonshot solution to tackle Antimicrobial Resistance (AMR) through phage therapy and immunomodulation.
+                                <br></br>Built a deck and presented a solution to VC's, and won the best presentation TEDx award.">
+                            <img src="/src/assets/image3.jpg" alt="Project 8" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">Neuvae Biotech</h3>
+                            <p class="text-sm text-gray-300 mb-2">Solving Antimicrobial Resistance by Initiating an Immune Response Against Pathogenic Bacteria</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Research</span>
+                            </div>
+                        </div>
+                        <div id="project-9" class="project-card bg-gray-800 p-4 rounded-lg shadow-md cursor-pointer" 
+                                data-year="2020" 
+                                data-pitch-deck-link="https://drive.google.com/file/d/11P5QUewpCZ8Au2qaVtXB5d651Ev6YxgX/view?usp=drivesdk"
+                                data-onepager-link="https://example.com/onepager1" 
+                                data-other-link="https://example.com/other1" 
+                                data-other-link-text="Additional Resource"
+                                data-description="Implemented a Python-based AI triage system, integrating natural language processing, Google Sheets API, and web scraping tools for efficient patient data analysis and reduced hospital wait times.
+                                <br></br>Placed top 10 out of 30 teams.">
+                            <img src="/src/assets/image3.jpg" alt="Project 9" class="w-full h-auto rounded-md mb-2">
+                            <h3 class="font-semibold headline">mPath</h3>
+                            <p class="text-sm text-gray-300 mb-2">An AI hackathon project addressing hospital wait times allowing individuals to understand which level of care facility their condition requires based on severity.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-white text-xs px-2 py-1 rounded border border-white">Python</span>
                             </div>
                         </div>
                     </div>
@@ -245,11 +385,7 @@
                             <div id="popup-tags" class="flex flex-wrap gap-2 mb-4"></div>
                             <img id="popup-image" src="" alt="" class="w-full h-auto rounded-md mb-4">
                             <p id="popup-description" class="text-gray-300 mb-4"></p>
-                            <div id="popup-tech-stack" class="mb-4">
-                                <h3 class="text-xl font-semibold mb-2">Tech Stack</h3>
-                                <ul class="list-disc list-inside"></ul>
-                            </div>
-                            <div id="popup-links" class="flex space-x-4">
+                            <div id="popup-links" class="popup-links">
                                 <!-- Links will be added dynamically -->
                             </div>
                         </div>
@@ -298,7 +434,6 @@
         const popupTags = document.getElementById('popup-tags');
         const popupImage = document.getElementById('popup-image');
         const popupDescription = document.getElementById('popup-description');
-        const popupTechStack = document.getElementById('popup-tech-stack').querySelector('ul');
         const popupLinks = document.getElementById('popup-links');
 
         projectCards.forEach(card => {
@@ -307,18 +442,44 @@
                 const subtitle = card.querySelector('p').textContent;
                 const tags = Array.from(card.querySelectorAll('.flex.flex-wrap.gap-2 span')).map(span => span.textContent);
                 const image = card.querySelector('img').src;
-                const description = "Detailed description of " + title + ". Add more information about the project here.";
-                const techStack = ['React', 'Node.js', 'MongoDB']; // Example tech stack
+                const description = card.dataset.description;
+                
+                // Get all project-specific links from data attributes
+                const demoLink = card.dataset.demoLink || '';
+                const pitchDeckLink = card.dataset.pitchDeckLink || '';
+                const onepagerLink = card.dataset.onepagerLink || '';
+
+                // Handle multiple other links
+                const otherLinks = [];
+                let i = 1;
+                while (card.dataset[`otherLink${i}`]) {
+                    otherLinks.push({
+                        url: card.dataset[`otherLink${i}`],
+                        text: card.dataset[`otherLinkText${i}`] || `Other ${i}`
+                    });
+                    i++;
+                }
+
                 const links = [
-                    { text: 'Demo', url: 'https://www.youtube.com/watch?v=Xr_T3Gt9u30' },
-                    { text: 'Pitch Deck', url: 'https://drive.google.com/file/d/1u8BiHYyCj8vHEIEB7RZr3dIi0acTK3gZ/view' }
-                ];
+                    { text: 'Demo', url: demoLink },
+                    { text: 'Pitch Deck', url: pitchDeckLink },
+                    { text: 'One Pager', url: onepagerLink },
+                    ...otherLinks
+                ].filter(link => link.url); // Only include links with non-empty URLs
 
                 popupTitle.textContent = title;
                 popupSubtitle.textContent = subtitle;
+                popupSubtitle.className = 'text-gray-300 mb-4'; // Keep the subtitle color
                 popupImage.src = image;
                 popupImage.alt = title;
-                popupDescription.textContent = description;
+
+                // Always show description if it exists
+                if (description && description !== subtitle) {
+                    popupDescription.innerHTML = description; // Use innerHTML instead of textContent
+                    popupDescription.style.display = 'block';
+                } else {
+                    popupDescription.style.display = 'none';
+                }
 
                 popupTags.innerHTML = '';
                 tags.forEach(tag => {
@@ -328,19 +489,13 @@
                     popupTags.appendChild(span);
                 });
 
-                popupTechStack.innerHTML = '';
-                techStack.forEach(tech => {
-                    const li = document.createElement('li');
-                    li.textContent = tech;
-                    popupTechStack.appendChild(li);
-                });
-
                 popupLinks.innerHTML = '';
+                popupLinks.className = 'popup-links';
                 links.forEach(link => {
                     const a = document.createElement('a');
                     a.href = link.url;
                     a.textContent = link.text;
-                    a.className = 'bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600';
+                    a.className = 'custom-button mb-2 mr-2';
                     a.target = '_blank';
                     popupLinks.appendChild(a);
                 });
