@@ -268,3 +268,11 @@ html.is-animating .transition-main {
 #projects-container.is-animating {
     opacity: 0;
 }
+
+.projects-title {
+    font-family: 'Boska-Medium', serif;
+    font-size: 2rem; 
+    font-weight: normal; 
+    color: #f0f0f0; 
+    margin-bottom: 1rem; 
+}

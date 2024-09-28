@@ -12,6 +12,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <title>Kabeer Makkar</title>
     <meta name="description" content="I'm a 19-year-old developer from Toronto building projects to better the world.">
     
@@ -22,8 +23,17 @@
     <script defer src="https://unpkg.com/swup@4"></script>
     <script src="https://unpkg.com/@swup/fragment-plugin@1"></script>
     <script defer src="/src/script.js"></script>
-    
+
+    <link rel="stylesheet" href="switzer.css">
+    <link rel="stylesheet" href="boska.css">
+
     <style>
+         .projects-title {
+            font-family: 'Boska-Medium', serif;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
         /* gradient background */
         .background-effect {
             width: 100%;
@@ -201,6 +211,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .main-title.headline {
+            font-family: 'Boska-Medium', serif;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #f0f0f0; /* Matching the color from index.html */
+            font-weight: normal;
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
@@ -223,7 +242,7 @@
 
             <div class="min-h-screen ml-16 p-6">
                 <section class="mb-20">
-                    <h1 class="text-4xl font-bold mb-8">Projects</h1>
+                    <h2 class="font-bold projects-title">Projects</h2>
                     <nav class="mb-8">
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800" data-year="all">All</button>
                         <button class="filter-button bg-gray-700 text-white px-4 py-2 rounded-full hover:bg-gray-800 mr-2" data-year="2024">2024</button>
@@ -364,7 +383,7 @@
                                 data-year="2020" 
                                 data-pitch-deck-link="https://drive.google.com/file/d/11P5QUewpCZ8Au2qaVtXB5d651Ev6YxgX/view?usp=drivesdk"
                                 data-onepager-link="https://example.com/onepager1" 
-                                data-other-link="https://example.com/other1" 
+                                data-other-link="https://example.com/other1"
                                 data-other-link-text="Additional Resource"
                                 data-description="Implemented a Python-based AI triage system, integrating natural language processing, Google Sheets API, and web scraping tools for efficient patient data analysis and reduced hospital wait times.
                                 <br></br>Placed top 10 out of 30 teams.">
