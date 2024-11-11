@@ -32,7 +32,7 @@ function goToCard(index, animate = true) {
   currentIndex = index;
 
   if (animate) {
-    carouselTrack.style.transition = 'transform 0.5s ease';
+    carouselTrack.style.transition = 'transform 2s ease';
   } else {
     carouselTrack.style.transition = 'none';
   }
@@ -44,18 +44,18 @@ function goToCard(index, animate = true) {
       carouselTrack.style.transition = 'none';
       currentIndex = 0;
       carouselTrack.style.transform = `translateX(0)`;
-    }, 500);
+    }, 2000);
   } else if (index < 0) {
     setTimeout(() => {
       carouselTrack.style.transition = 'none';
       currentIndex = totalCards - 1;
       carouselTrack.style.transform = `translateX(${-(totalCards - 1) * cardWidth}px)`;
-    }, 500);
+    }, 2000);
   }
 
   setTimeout(() => {
     isTransitioning = false;
-  }, 500);
+  }, 2000);
 }
 
 // next button click
@@ -138,7 +138,7 @@ function startAutoScroll() {
   stopAutoScroll();
   timeoutId = setInterval(() => {
     goToCard(currentIndex + 1);
-  }, 5000);
+  }, 8000);
 }
 
 function stopAutoScroll() {
