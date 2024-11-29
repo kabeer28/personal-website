@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- google tag -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8VWC8GQWV5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8VWC8GQWV5');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Kabeer Makkar</title>
+    <meta name="description" content="I'm a 19-year-old developer from Toronto building projects to better the world.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="switzer.css">
+    <link rel="stylesheet" href="boska.css">
+
+    <style>
+        .background-effect {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #191b1f;
+        }
+
+        .background-effect::after,
+        .background-effect::before {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            background: hsl(199, 56%, 18%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(70px);
+            mix-blend-mode: lighten;
+        }
+
+        .background-effect::before {
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+
+        .background-effect::after {
+            top: 50%;
+            left: 0px;
+            transform: translateX(-50%);
+        }
+
+        .background-effect {
+            background: radial-gradient(
+                circle closest-corner at center 125px,
+                hsl(199, 56%, 18%),
+                #191b1f 70%
+            ) no-repeat;
+        }
+
+        .custom-button {
+            background-color: #37404e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .custom-button:hover {
+            background-color: #4a5568;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 4px;
+        }
+
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background-color: #191b1f;
+        }
+
+        body {
+            font-family: 'Switzer-Regular', sans-serif;
+            color: #e0e0e0;
+            background-color: #191b1f;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Boska-Medium', serif;
+            color: #f0f0f0;
+        }
+
+        .wip-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .wip-title {
+            font-family: 'Boska-Medium', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #f0f0f0;
+        }
+
+        .wip-description {
+            font-family: 'Switzer-Regular', sans-serif;
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
+    <main id="swup" class="transition-fade">
+        <div class="background-effect scrollbar-custom">
+            
+            <header class="bg-transparent text-white p-4 flex justify-between items-center relative z-10">
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="namelogo.png" alt="signature" class="h-10 mr-4">
+                    </a>
+                </div>
+                <nav>
+                    <ul class="flex space-x-4 mt-1 mr-1">
+                        <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+                        <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+                        <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">Twitter</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            
+            <div class="min-h-screen ml-16 p-6">
+                <section class="mb-20">
+                    <h2 class="font-bold projects-title"></h2>
+                    
+                    <div class="wip-message">
+                        
+                        <div class="flex justify-center mb-6">
+                            <div class="relative w-16 h-16">
+                                <div class="absolute inset-0 animate-spin-slow border-4 border-dashed rounded-full border-gray-400"></div>
+                                <svg
+                                    class="absolute inset-2/4 transform -translate-x-2/4 -translate-y-2/4 text-gray-300"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    class="h-12 w-12"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 16h.01M12 16h.01M16 16h.01M9 20h6M4 4h16M4 8h16M4 12h16M4 16h16"
+                                    />
+                                </svg>
+                            </div>
+                        </div>
+
+                        <h2 class="wip-title">Blog Under Construction</h2>
+                        <p class="wip-description">I'm excited to share my journey, insights on technology, and thoughts about the future of tech all really soon. Meanwhile, you connect with me on LinkedIn or GitHub!</p>
+
+                        <div class="flex justify-center space-x-4 mt-6">
+                            <a href="https://www.linkedin.com/in/kabeer-makkar/"
+                                target="_blank"
+                                class="custom-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full">
+                                Follow on LinkedIn
+                            </a>
+                            <a href="https://github.com/kabeer28"
+                                target="_blank"
+                                class="custom-button bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 px-6 rounded-full">
+                                View GitHub
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer class="bg-transparent text-white p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="namelogo.png" alt="signature" class="h-10 mr-4">
+                </div>
+                <nav>
+                    <ul class="flex space-x-4">
+                        <li><a href="https://www.linkedin.com/in/kabeer-makkar/" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">LinkedIn</a></li>
+                        <li><a href="https://github.com/kabeer28" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">GitHub</a></li>
+                        <li><a href="https://x.com/makkarkabeer" target="_blank" class="bg-transparent text-white px-4 py-2 rounded-full hover:bg-gray-700">Twitter</a></li>
+                    </ul>
+                </nav>
+            </footer>
+        </div>
+    </main>
+</body>
+</html>

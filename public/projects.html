@@ -191,10 +191,12 @@
             border-radius: 0.25rem;
             text-decoration: none;
             transition: background-color 0.3s ease;
+            cursor: pointer;
         }
 
         .custom-button:hover {
-            background-color: #4a5568; /* slightly lighter gray on hover */
+            background-color: #4a5568; 
+            cursor: pointer;
         }
 
         .popup-links {
@@ -210,6 +212,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            cursor: pointer;
+            display: inline-block;
         }
 
         .main-title.headline {
@@ -217,7 +221,7 @@
             font-size: 2rem;
             line-height: 1.2;
             margin-bottom: 1rem;
-            color: #f0f0f0; /* Matching the color from index.html */
+            color: #f0f0f0; 
             font-weight: normal;
         }
     </style>
@@ -312,7 +316,6 @@
                                 data-pitch-deck-link="https://drive.google.com/file/pitch2"
                                 data-description="Personal project focused on creating a solution to optimize the Indian blood supply chain at each stage, reduce errors, and potential wastage of blood, energy, and money; mentioned in the National Observer
                                 <br></br>Met with multiple Indian private institutions to discuss possible pilots, including Narayana Health, and E Rakt Kosh">
-                            <img src="/src/assets/image2.jpg" alt="Project 3" class="w-full h-auto rounded-md mb-2">
                             <h3 class="font-semibold headline">Circulate - Redesigning the Indian Blood Supply Chain</h3>
                             <p class="text-sm text-gray-300 mb-2">Mitigating deaths in India due to the blood shortage by developing a load-balancing algorithm and transportation infrastructure through a crowdsourcing model</p>
                             <div class="flex flex-wrap gap-2">
@@ -325,7 +328,6 @@
                                 data-demo-link="https://youtu.be/5S83bXDL384"
                                 data-other-link1="https://devpost.com/software/abel"
                                 data-other-link-text1="Devpost">
-                            <img src="/src/assets/image3.jpg" alt="Project 4" class="w-full h-auto rounded-md mb-2">
                             <h3 class="font-semibold headline">Abel</h3>
                             <p class="text-sm text-gray-300 mb-2">Built a walking cane with ultrasonic sensors to assist visually impaired people at Hack The North 2022</p>
                             <div class="flex flex-wrap gap-2">
@@ -337,8 +339,7 @@
                                 data-other-link1="https://drive.google.com/file/d/16c-URsTuSJ30kmGJSoT6_jNYXh8HqlqX/view?usp=drivesdk"
                                 data-other-link-text1="Slide Deck"
                                 data-demo-link="https://www.loom.com/share/379a70d400ee4e43abb5da51e5104637"
-                                data-description="Our pitched project, Femé, enables more women and girls to access, create and influence technology in Morroco by increasing digital skills and access to digital devices and the Internet by 2026
-                                <br></br>Problem, Solution, Opportunity and Impact Appendices are located in the last slide of the slide deck.">
+                                data-description="Designed an innovative solution to reduce methane emissions by 50% from abandoned gas wells by leveraging cost-effective sealing materials like PTFE tape and pipe sealants. This approach significantly decreases environmental impact while saving Shell millions in emission taxes.
                             <img src="/src/assets/image3.jpg" alt="Project 5" class="w-full h-auto rounded-md mb-2">
                             <h3 class="font-semibold headline">Shell: Tackling Methane Emissions by Decommissioning High-Risk Sources</h3>
                             <p class="text-sm text-gray-300 mb-2">Brief description of Project 3</p>
@@ -481,7 +482,8 @@
                 const title = card.querySelector('h3').textContent;
                 const subtitle = card.querySelector('p').textContent;
                 const tags = Array.from(card.querySelectorAll('.flex.flex-wrap.gap-2 span')).map(span => span.textContent);
-                const popupImageSrc = card.dataset.popupImage || card.querySelector('img').src;
+                const initialImg = card.querySelector('img');
+                const popupImageSrc = card.dataset.popupImage || (initialImg ? initialImg.src : '');
                 const description = card.dataset.description;
                 
                 // Get all project-specific links from data attributes
@@ -510,8 +512,12 @@
                 popupTitle.textContent = title;
                 popupSubtitle.textContent = subtitle;
                 popupSubtitle.className = 'text-gray-300 mb-4'; // Keep the subtitle color
-                document.getElementById('popup-image').src = popupImageSrc;
-                document.getElementById('popup-image').alt = title;
+                if (popupImageSrc) {
+                    document.getElementById('popup-image').src = popupImageSrc;
+                    document.getElementById('popup-image').style.display = 'block';
+                } else {
+                    document.getElementById('popup-image').style.display = 'none';
+                }
 
                 // Always show description if it exists
                 if (description && description !== subtitle) {
