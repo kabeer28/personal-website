@@ -79,22 +79,18 @@
 }
 @font-face {
   font-family: 'Boska-Medium';
-  src: url('/public/fonts/Boska-Medium.woff2') format('woff2'),
-       url('/public/fonts/Boska-Medium.woff') format('woff'),
-       url('/public/fonts/Boska-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
+  src: url('/fonts/Boska-Medium.woff2') format('woff2'),
+       url('/fonts/Boska-Medium.woff') format('woff'),
+       url('/fonts/Boska-Medium.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Boska-MediumItalic';
-  src: url('/public/fonts/Boska-MediumItalic.woff2') format('woff2'),
-       url('/public/fonts/Boska-MediumItalic.woff') format('woff'),
-       url('/public/fonts/Boska-MediumItalic.ttf') format('truetype');
-  font-weight: 500;
-  font-display: swap;
-  font-style: italic;
+  src: url('/fonts/Boska-MediumItalic.woff2') format('woff2'),
+       url('/fonts/Boska-MediumItalic.woff') format('woff'),
+       url('/fonts/Boska-MediumItalic.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Boska-Bold';
   src: url('/public/fonts/Boska-Bold.woff2') format('woff2'),
