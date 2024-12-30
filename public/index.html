@@ -297,7 +297,7 @@
 </head>
     
 <body
-    <main class="antialiased bg-transparent text-white scrollbar-custom"></main>
+    <main class="antialiased bg-transparent text-white scrollbar-custom">
     <div class="background-effect scrollbar-custom">
         <header class="bg-transparent text-white p-6 flex justify-between items-center relative z-10">
             <div class="flex items-center">
@@ -359,11 +359,13 @@
             <section id="contact" class="mb-12">
                 <h2 class="text-3xl font-bold">Info</h2>
                 <br>
-                <p class="body-text">Currently, i'm building projects in the AI-hardware space, creating a photo-based recipe maker for university students, and a Program Facilitator @ <a href="https://mysurestart.com/" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">SureStart</span></a>.</p>
+                <p class="body-text">Currently, i'm building projects in the AI-hardware space and a Program Facilitator @ <a href="https://mysurestart.com/" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">SureStart</span></a>.</p>
                 <br>
                 <p class="body-text">I'm interested in embedded systems, machine learning, and love brainstorming innovative ideas.</p>
+                <br>
+                <p class="body-text">I find myself very amused at creating things [projects, writing]. Creation is the ultimate bridge between imagination and reality, and a timeless pursuit where the abstract becomes tangible and ideas evolve into entities that shape the world.</p>
                 <br2>
-                <p class="body-text">Other than that, I like the gym, <span class="volleyball-hover">play volleyball</span> and learn about cars on my free time.</p>
+                <p class="body-text">Other than that, I'm currently enjoying optimizing my health, <span class="volleyball-hover">play volleyball</span> and love experiencing different types of art [music, games, visual]. I also believe cars are also able to fit in between the perfect intersection of art and science. They remind us that beauty and utility are not opposites but complementary forces in creation.</p>
                 <br2>
                 <p class="body-text">You can reach me at my <a href="mailto:kabeermakkar28@gmail.com" target="_self" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">email,</span></a> and check out my <a href="https://drive.google.com/file/d/1ZStwXqHjIrLwG4T-uyEgxID_vg474l_s/view?usp=sharing" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">resume</span></a> to find out more about me.</p>
                 <br>
@@ -402,10 +404,10 @@
             if (projectToOpen) {
                 const projectElement = document.getElementById(projectToOpen);
                 if (projectElement) {
-                    // Trigger click event to open the popup
+                    // trigger click event to open the popup
                     projectElement.click();
 
-                    // Apply highlight effect to the popup
+                    // apply highlight effect to the popup
                     setTimeout(() => {
                         const popup = document.getElementById('project-popup');
                         if (popup) {
