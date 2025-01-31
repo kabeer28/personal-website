@@ -28,19 +28,164 @@
     <link rel="stylesheet" href="/boska.css">
 
     <style>
-         .projects-title {
+        html, body {
+            background-color: #191b1f;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overscroll-behavior: none; /* This prevents the bounce/overscroll effect */
+        }
+
+        body {
+            position: relative;
+        }
+
+        .projects-title {
             font-family: 'Boska-Medium', serif;
-            font-size: 2rem;
-            line-height: 1.2;
+            font-size: 4rem;
+            color: #f0f0f0;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #f0f0f0, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(147, 197, 253, 0.3)); }
+            50% { filter: drop-shadow(0 0 10px rgba(147, 197, 253, 0.5)); }
+        }
+
+        .filter-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            color: #e0e0e0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            margin: 0.25rem;
+            font-family: 'Switzer-Regular', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .filter-button:hover {
+            background: rgba(147, 197, 253, 0.1);
+            border-color: rgba(147, 197, 253, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(147, 197, 253, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
             margin-bottom: 1rem;
         }
+
+        .project-card h3 {
+            font-family: 'Boska-Medium', serif;
+            font-size: 1.75rem;
+            color: #f0f0f0;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        #project-popup {
+            backdrop-filter: blur(8px);
+        }
+
+        .popup-content {
+            background: rgba(31, 41, 55, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(147, 197, 253, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .popup-content img {
+            border-radius: 12px;
+            margin: 1rem 0;
+        }
+
+        .custom-button {
+            background: rgba(147, 197, 253, 0.1);
+            color: #93c5fd;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(147, 197, 253, 0.2);
+            margin: 0.5rem;
+            font-family: 'Switzer-Regular', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .custom-button:hover {
+            background: rgba(147, 197, 253, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .projects-title {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .project-card {
+                padding: 1rem;
+            }
+
+            .popup-content {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.35rem;
+            }
+
+            .project-card p {
+                font-size: 1rem;
+            }
+        }
+
         /* gradient background */
         .background-effect {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             position: relative;
             overflow: hidden;
             background-color: #191b1f;
+            background: radial-gradient(
+                circle closest-corner at center 125px,
+                hsl(199, 56%, 18%),
+                #191b1f 70%
+            ) no-repeat;
+            background-attachment: fixed;
         }
 
         .background-effect::after,
@@ -68,14 +213,6 @@
             transform: translateX(-50%);
         }
 
-        .background-effect {
-            background: radial-gradient(
-                circle closest-corner at center 125px,
-                hsl(199, 56%, 18%),
-                #191b1f 70%
-            ) no-repeat;
-        }
-        
         .scrollable-custom {
             overflow: hidden;
             position: relative;
@@ -184,36 +321,10 @@
             color: white;
         }
 
-        .custom-button {
-            background-color: #37404e; /* dark gray */
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .custom-button:hover {
-            background-color: #4a5568; 
-            cursor: pointer;
-        }
-
         .popup-links {
             display: flex;
             flex-wrap: wrap;
             gap: 10px; /* yo kabz u can adjust this value to increase/decrease space between buttons */
-        }
-
-        .custom-button {
-            flex: 1 1 calc(25% - 10px); /* this makes each button take up 25% of the container width minus the gap */
-            min-width: 100px; /* ensures buttons don't get too small on narrow screens */
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-            display: inline-block;
         }
 
         .main-title.headline {
@@ -225,6 +336,45 @@
             font-weight: normal;
         }
 
+        /* Add responsive styles */
+        @media (max-width: 768px) {
+            .ml-16 {
+                margin-left: 0;
+            }
+
+            .grid {
+                grid-template-columns: 1fr !important; /* Single column on mobile */
+            }
+
+            .filter-button {
+                margin: 0.25rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            nav {
+                overflow-x: auto;
+                white-space: nowrap;
+                padding-bottom: 0.5rem;
+            }
+
+            .popup-content {
+                width: 95%;
+                padding: 1rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body class="font-sans antialiased bg-transparent text-white scrollbar-custom">
