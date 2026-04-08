@@ -417,12 +417,73 @@
                 width: 45% !important;
             }
         }
+    
+
+        .amd-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 999px;
+            padding: 0.45rem 0.95rem;
+            text-decoration: none;
+            color: #e0e0e0;
+            transition: box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
+        }
+
+        .amd-badge:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .amd-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4fd1c5;
+            flex-shrink: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 1.5rem 0 2rem 0;
+        }
+
+        .section-label {
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 1rem;
+        }
+
+        .stack-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .stack-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.32rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: #d1d5db;
+            font-size: 0.85rem;
+            line-height: 1.2;
+        }
+
     </style>
     <link rel="stylesheet" href="/switzer.css">
     <link rel="stylesheet" href="/boska.css">
 </head>
     
-<body
+<body>
     <main class="antialiased bg-transparent text-white scrollbar-custom">
     <div class="background-effect scrollbar-custom">
         <header class="bg-transparent text-white p-4 flex flex-wrap justify-between items-center relative z-10">
@@ -445,6 +506,11 @@
                 <h2 class="headline font-bold">Kabeer Makkar</h2>
                 <br>
                 <p class="body-text">I'm an innovator, developer, and Computer Engineering student at <a href="https://smithengineering.queensu.ca/ece/index.html" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">Queen's University</span></a>.</p>
+                <br>
+                <a href="https://www.amd.com/" target="_blank" class="amd-badge">
+                    <span class="amd-dot"></span>
+                    <span>Incoming ASIC Design Engineering Intern @ AMD · PCIe IP</span>
+                </a>
             </section>
 
             <section class="ml-2 p-6">
@@ -480,11 +546,36 @@
                     </div>
                     
             </section>
-            
+
+            <div class="divider"></div>
+
+            <section class="mb-12 ml-2 p-2">
+                <p class="section-label">Stack</p>
+                <div class="stack-wrap">
+                    <span class="stack-pill">C</span>
+                    <span class="stack-pill">C++</span>
+                    <span class="stack-pill">Python</span>
+                    <span class="stack-pill">Verilog</span>
+                    <span class="stack-pill">SystemVerilog</span>
+                    <span class="stack-pill">ROS2</span>
+                    <span class="stack-pill">PyTorch</span>
+                    <span class="stack-pill">TFLite / Edge TPU</span>
+                    <span class="stack-pill">Altium</span>
+                    <span class="stack-pill">LTspice</span>
+                    <span class="stack-pill">Quartus</span>
+                    <span class="stack-pill">GTKWave</span>
+                    <span class="stack-pill">Linux</span>
+                    <span class="stack-pill">Git</span>
+                </div>
+            </section>
+
+            <div class="divider"></div>
 
             <section id="contact" class="mb-12">
                 <h2 class="text-3xl font-bold">Info</h2>
                 <br>
+                <p class="body-text">This summer, I'll be joining <a href="https://www.amd.com/" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">AMD</span></a> as an ASIC Design Engineering Intern working with PCIe IP.</p>
+                <br2>
                 <p class="body-text">Currently, i'm building an amplifier + power supply from the ground up, and some personal projects in the AI-hardware space. Previously @ <a href="https://mysurestart.com/" target="_blank" class="text-white glow-link"><span style="font-family: 'Boska-MediumItalic', serif; font-style: italic; font-weight: bold;">SureStart</span></a>.</p>
                 <br2>
                 <p class="body-text">I'm interested in embedded systems, machine learning, and love brainstorming innovative ideas.</p>
